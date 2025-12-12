@@ -119,7 +119,7 @@ docker-compose up -d --build
 docker-compose down
 ```
 
-Aplicação disponível em: http://localhost:8080
+> **Aplicação disponível em: http://localhost:8080*  
 
 
 
