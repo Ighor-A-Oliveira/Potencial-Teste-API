@@ -2,10 +2,6 @@
 
 API REST de carteira digital desenvolvida como teste técnico para processo de estagio.
 
-[![Java 21](https://img.shields.io/badge/Java-21-blue.svg)](https://www.oracle.com/java/)
-[![Spring Boot 3](https://img.shields.io/badge/Spring_Boot-3.3+-green)](https://spring.io/projects/spring-boot)
-[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15+-blue.svg)](https://www.postgresql.org/)
-[![Maven](https://img.shields.io/badge/Maven-3.9+-blue.svg)](https://maven.apache.org/)
 
 ## Funcionalidades implementadas
 - Cadastro de usuários com CPF, nome, email e senha criptografada (BCrypt)
