@@ -39,7 +39,7 @@ GRANT ALL PRIVILEGES ON DATABASE security_test TO spring_user;
 
 ## Application.Properties
 spring.application.name=teste-tecnico-api-spring
-# Local Host
+#Local Host
 spring.datasource.url=jdbc:postgresql://localhost:5432/security_test
 #Docker Compose
 #spring.datasource.url=jdbc:postgresql://db:5432/security_test
