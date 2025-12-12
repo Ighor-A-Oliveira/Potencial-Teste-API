@@ -38,12 +38,12 @@ GRANT ALL PRIVILEGES ON DATABASE potencial_test TO spring_user;
 - Aplicação: http://localhost:8080
 
 
-## Endpoints da API
+## Endpoints da API 
 
 | Método | Rota                                   | Descrição                              | Auth     |
 |--------|----------------------------------------|----------------------------------------|----------|
 | **POST** | `/user/register`                     | Cadastra usuário                       | Pública  |
-| **POST** | `/user/login`                        | Login → retorna JWT + refresh token     | Pública  |
+| **POST** | `/user/login`                        | Login → retorna JWT + refresh token    | Pública  |
 | **POST** | `/account/register`                  | Cria conta bancária                    | JWT      |
 | **POST** | `/transaction/deposit`               | Depósito                               | JWT      |
 | **POST** | `/transaction/withdraw`              | Saque                                  | JWT      |
