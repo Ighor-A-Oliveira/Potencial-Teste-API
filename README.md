@@ -104,8 +104,7 @@ GRANT ALL PRIVILEGES ON DATABASE security_test TO spring_user;
 }
 ```
 
-## Rodando com Docker Compose (recomendado)
-
+## Rodando com Docker Compose (docker-compose.yml já incluso dentro do repositorio)
 
 
 ```bash
