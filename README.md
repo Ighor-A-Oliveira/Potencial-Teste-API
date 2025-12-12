@@ -38,7 +38,7 @@ GRANT ALL PRIVILEGES ON DATABASE security_test TO spring_user;
 - cd SEU_REPOSITORIO
 - mvn clean install
 - mvn spring-boot:run (ou inicie o metodo principal)
-- Aplicação: http://localhost:8080
+> **Aplicação disponível em: http://localhost:8080*  
 
 
 ## Endpoints da API 
