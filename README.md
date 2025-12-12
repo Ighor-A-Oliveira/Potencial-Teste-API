@@ -7,25 +7,30 @@ API REST de carteira digital desenvolvida como teste técnico para a Potencial.
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15+-blue.svg)](https://www.postgresql.org/)
 [![Maven](https://img.shields.io/badge/Maven-3.9+-blue.svg)](https://maven.apache.org/)
 
-## Funcionalidades
-- Cadastro com com CPF e crieação de login com email e senha criptografada
-- Criação de conta bancária
-- Depósito, saque, transferência interna e externa
-- JWT + Refresh Token com rotação
-- Validações e tratamento de erros
+## Funcionalidades implementadas
+- Cadastro de usuários com CPF, nome, email e senha criptografada (BCrypt)
+- Login com retorno de JWT (access + refresh token com rotação)
+- Perfis: USER (padrão) e ADMIN (configurável no banco)
+- Criação de conta digital por usuário: número gerado automaticamente, saldo inicial 0, data de criação e status (ativa/inativa)
+- Transações internas: depósito (positivo), saque (sem negativo), transferência interna (validação de saldo e conta destino)
+- Transações externas: transferência simulada com validação de saldo, consumo da API pública de bancos[](https://brasilapi.com.br/api/banks/v1) para validar código de banco
+- Histórico completo de transações: tipo, valor, contas origem/destino, timestamp, saldo pós-operação
+- Auditoria: logs estruturados em console (com usuário, endpoint, data/hora, payload) — pode ser extendido para arquivo ou banco
+- Segurança: JWT para autenticação, criptografia de senha, validações de entrada (valores >0, formatos de CPF, etc.)
 
 ## Pré-requisitos
-| Ferramenta   | Versão mínima | Verificar com       |
-|--------------|---------------|---------------------|
-| Java JDK     | 21            | `java -version`     |
-| Maven        | 3.8+          | `mvn -v`            |
-| PostgreSQL   | 18+           | `psql --version`    |
+| Ferramenta   | Versão mínima | Comando de verificação |
+|--------------|---------------|-------------------------|
+| Java JDK     | 21            | `java -version`        |
+| Maven        | 3.8+         | `mvn -v`               |
+| PostgreSQL   | 15+           | `psql --version`       |
+| Docker (opcional) | Latest      | `docker --version`     |
 
 ## Configuração do banco (execute uma única vez)
 ```sql
-CREATE DATABASE potencial_test;
+CREATE DATABASE security_test;
 CREATE USER spring_user WITH PASSWORD 'strongpassword';
-GRANT ALL PRIVILEGES ON DATABASE potencial_test TO spring_user;
+GRANT ALL PRIVILEGES ON DATABASE security_test TO spring_user;
 ```
 
 ## Como rodar
