@@ -38,23 +38,30 @@ GRANT ALL PRIVILEGES ON DATABASE potencial_test TO spring_user;
 - Aplicação: http://localhost:8080
 
 
-#Endpoints da API
-POST /user/register
-Cadastro de usuário
-Campos: name, cpf, password
-POST /user/login
-Login com CPF e senha
-Retorna access + refresh token
-POST /account/register
-Cria conta bancária
-JWT obrigatório
-POST /transaction/deposit
-Realiza depósito
-POST /transaction/withdraw
-Realiza saque
-POST /transaction/internal-transfer
-Transferência entre contas da mesma instituição
-POST /transaction/external-transfer
-Transferência para outro banco (simulada)
-Todos os endpoints protegidos precisam do header:
-Authorization: Bearer <seu_token_jwt>
+## Endpoints da API
+
+### POST /user/register
+-Cadastro de usuário
+-Campos: name, cpf, password
+
+### POST /user/login
+-Login com CPF e senha
+-Retorna access + refresh token
+
+### POST /account/register
+-Cria conta bancária
+-JWT obrigatório
+
+### POST /transaction/deposit
+-Realiza depósito
+
+### POST /transaction/withdraw
+-Realiza saque
+
+### POST /transaction/internal-transfer
+-Transferência entre contas da mesma instituição
+
+### POST /transaction/external-transfer
+-Transferência para outro banco (simulada)
+-Todos os endpoints protegidos precisam do header:
+-Authorization: Bearer <seu_token_jwt>
