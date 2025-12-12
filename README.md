@@ -79,7 +79,7 @@ GRANT ALL PRIVILEGES ON DATABASE security_test TO spring_user;
 ### Depósito ou Saque
 ```json
 {
-  "toAccountId": 1,
+  "fromAccountId": 1,
   "amount": 100.0
 }
 ```
