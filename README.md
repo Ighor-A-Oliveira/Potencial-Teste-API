@@ -1,101 +1,60 @@
-# Potencial-Teste-API
+# Potencial - Teste Técnico API
 
-API REST desenvolvida em **Spring Boot 3 + Java 21** para o processo seletivo da Potencial.  
-O projeto inclui autenticação JWT, refresh token, refresh token rotation, validações, testes unitários/integração e boas práticas de arquitetura.
+API REST de carteira digital desenvolvida como teste técnico para a Potencial.
 
-[![Java 21](https://img.shields.io/badge/Java-21-blue.svg)](https://www.oracle.com/java/technologies/javase/jdk21-archive-downloads.html)
-[![Spring Boot 3](https://img.shields.io/badge/Spring%20Boot-3.3.3-brightgreen.svg)](https://spring.io/projects/spring-boot)
+[![Java 21](https://img.shields.io/badge/Java-21-blue.svg)](https://www.oracle.com/java/)
+[![Spring Boot 3](https://img.shields.io/badge/Spring_Boot-3.3+-green)](https://spring.io/projects/spring-boot)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15+-blue.svg)](https://www.postgresql.org/)
 [![Maven](https://img.shields.io/badge/Maven-3.9+-blue.svg)](https://maven.apache.org/)
-[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16+-blue.svg)](https://www.postgresql.org/)
 
-## Funcionalidades principais
-- Cadastro e autenticação de usuários com JWT
-- Refresh Token com rotação (refresh token rotation)
-- Proteção de rotas com Spring Security
-- Validações com Bean Validation
-- Testes unitários e de integração (JUnit 5 + MockMvc)
-- Documentação automática com SpringDoc OpenAPI (Swagger)
-
-## Tecnologias utilizadas
-- Java 21
-- Spring Boot 3.3+
-- Spring Security + JWT
-- Spring Data JPA (Hibernate)
-- PostgreSQL
-- Maven
-- Lombok
-- SpringDoc OpenAPI
+## Funcionalidades
+- Cadastro e login com CPF
+- Criação de conta bancária
+- Depósito, saque, transferência interna e externa
+- JWT + Refresh Token com rotação
+- Validações completas e tratamento de erros
+- Testes unitários e de integração
+- Documentação Swagger
 
 ## Pré-requisitos
+| Ferramenta   | Versão mínima | Verificar com       |
+|--------------|---------------|---------------------|
+| Java JDK     | 21            | `java -version`     |
+| Maven        | 3.8+          | `mvn -v`            |
+| PostgreSQL   | 15+           | `psql --version`    |
 
-Antes de rodar o projeto, garanta que tenha instalado:
-
-| Ferramenta         | Versão mínima | Como verificar                     |
-|--------------------|---------------|------------------------------------|
-| Java JDK           | 21            | `java -version`                    |
-| Maven              | 3.8+          | `mvn -v`                           |
-| PostgreSQL         | 15 ou superior| `psql --version`                   |
-
-## Configuração do Banco de Dados
-
-O projeto está configurado para usar o banco **PostgreSQL** local.
-
+## Configuração do banco (execute uma única vez)
 ```sql
--- Conecte-se como superusuário (postgres) e execute:
-CREATE DATABASE security_test;
-
+CREATE DATABASE potencial_test;
 CREATE USER spring_user WITH PASSWORD 'strongpassword';
+GRANT ALL PRIVILEGES ON DATABASE potencial_test TO spring_user;
+```
 
-GRANT ALL PRIVILEGES ON DATABASE security_test TO spring_user;
-
-
-##Como rodar o projeto localmente
-
-## 1. Clone o repositório
-git clone https://github.com/seu-usuario/potencial-teste-api.git
-cd potencial-teste-api
-
-## 2. (Opcional) Compile e baixe as dependências
+# Como rodar
+git clone https://github.com/Ighor-A-Oliveira/Potencial-Teste-API.git
+cd SEU_REPOSITORIO
 mvn clean install
-
-## 3. Inicie a aplicação
-mvn spring-boot:run
-
-A API ficará disponível em:
-http://localhost:8080
+mvn spring-boot:run ou inicie o metodo principal
+Aplicação: http://localhost:8080
 
 
-### Endpoints da API
-
-
-
-
-Variáveis de ambiente
-Caso queira alterar as credenciais do banco ou a porta da aplicação, crie um arquivo src/main/resources/application-local.properties ou use variáveis de ambiente:
-
-server.port=8080
-spring.datasource.url=jdbc:postgresql://localhost:5432/security_test
-spring.datasource.username=spring_user
-spring.datasource.password=strongpassword
-
-jwt.secret=sua-chave-secreta-muito-forte-aqui
-jwt.expiration=86400000          # 24h em ms
-jwt.refresh-expiration=604800000 # 7 dias em ms
-
-
-Estrutura do projeto
-
-src/
- └── main/
-      ├── java/com/example/potencial/
-      │    ├── controller/
-      │    ├── service/
-      │    ├── repository/
-      │    ├── security/
-      │    ├── config/
-      │    ├── dto/
-      │    ├── exception/
-      │    └── PotencialApplication.java
-      └── resources/
-           ├── application.properties
-           └── application-local.properties (opcional)
+#Endpoints da API
+POST /user/register
+Cadastro de usuário
+Campos: name, cpf, password
+POST /user/login
+Login com CPF e senha
+Retorna access + refresh token
+POST /account/register
+Cria conta bancária
+JWT obrigatório
+POST /transaction/deposit
+Realiza depósito
+POST /transaction/withdraw
+Realiza saque
+POST /transaction/internal-transfer
+Transferência entre contas da mesma instituição
+POST /transaction/external-transfer
+Transferência para outro banco (simulada)
+Todos os endpoints protegidos precisam do header:
+Authorization: Bearer <seu_token_jwt>
