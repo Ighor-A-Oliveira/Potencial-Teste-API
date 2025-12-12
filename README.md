@@ -56,9 +56,10 @@ GRANT ALL PRIVILEGES ON DATABASE potencial_test TO spring_user;
 ### Cadastro de usuário
 ```json
 {
-  "cpf": "12345678901",
+  "name": "ighor",
   "email": "usuario@email.com",
   "password": "senha123"
+  "cpf": "12345678901"
 }
 ```
 
@@ -72,7 +73,7 @@ GRANT ALL PRIVILEGES ON DATABASE potencial_test TO spring_user;
 ### Depósito ou Saque
 ```json
 {
-  "accountId": 1,
+  "toAccountId": 1,
   "amount": 100.0
 }
 ```
