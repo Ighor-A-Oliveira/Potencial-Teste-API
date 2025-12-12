@@ -1,68 +1,106 @@
-# Projeto Potencial-Teste-API - Configuração Local
+# Potencial-Teste-API
 
-Esta seção guia como clonar o projeto e preparar a execução local usando Java, Maven e PostgreSQL.
+API REST desenvolvida em **Spring Boot 3 + Java 21** para o processo seletivo da Potencial.  
+O projeto inclui autenticação JWT, refresh token, refresh token rotation, validações, testes unitários/integração e boas práticas de arquitetura.
 
----
+[![Java 21](https://img.shields.io/badge/Java-21-blue.svg)](https://www.oracle.com/java/technologies/javase/jdk21-archive-downloads.html)
+[![Spring Boot 3](https://img.shields.io/badge/Spring%20Boot-3.3.3-brightgreen.svg)](https://spring.io/projects/spring-boot)
+[![Maven](https://img.shields.io/badge/Maven-3.9+-blue.svg)](https://maven.apache.org/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16+-blue.svg)](https://www.postgresql.org/)
 
-## 📋 Pré-requisitos e Preparação Local
+## Funcionalidades principais
+- Cadastro e autenticação de usuários com JWT
+- Refresh Token com rotação (refresh token rotation)
+- Proteção de rotas com Spring Security
+- Validações com Bean Validation
+- Testes unitários e de integração (JUnit 5 + MockMvc)
+- Documentação automática com SpringDoc OpenAPI (Swagger)
 
-Antes de começar, certifique-se de ter instalado:
+## Tecnologias utilizadas
+- Java 21
+- Spring Boot 3.3+
+- Spring Security + JWT
+- Spring Data JPA (Hibernate)
+- PostgreSQL
+- Maven
+- Lombok
+- SpringDoc OpenAPI
 
-1. **Java JDK 21**  
-   Verifique com: `java -version`
+## Pré-requisitos
 
-2. **Maven**  
-   Para compilar e rodar o projeto: `mvn -v`
+Antes de rodar o projeto, garanta que tenha instalado:
 
-3. **PostgreSQL 18**  
-   - Banco de dados: `security_test`  
-   - Usuário: `spring_user`  
-   - Senha: `strongpassword`  
+| Ferramenta         | Versão mínima | Como verificar                     |
+|--------------------|---------------|------------------------------------|
+| Java JDK           | 21            | `java -version`                    |
+| Maven              | 3.8+          | `mvn -v`                           |
+| PostgreSQL         | 15 ou superior| `psql --version`                   |
 
-Caso não existam, crie-os usando SQL:
+## Configuração do Banco de Dados
+
+O projeto está configurado para usar o banco **PostgreSQL** local.
 
 ```sql
+-- Conecte-se como superusuário (postgres) e execute:
 CREATE DATABASE security_test;
+
 CREATE USER spring_user WITH PASSWORD 'strongpassword';
+
 GRANT ALL PRIVILEGES ON DATABASE security_test TO spring_user;
-sql```
 
 
-1. Preparando o Projeto Localmente
+Como rodar o projeto localmente
 
-Clonar o Repositório
-git clone https://github.com/seu-usuario/seu-repositorio.git](https://github.com/Ighor-A-Oliveira/Potencial-Teste-API.git
-cd seu-repositorio\
+# 1. Clone o repositório
+git clone https://github.com/seu-usuario/potencial-teste-api.git
+cd potencial-teste-api
+
+# 2. (Opcional) Compile e baixe as dependências
+mvn clean install
+
+# 3. Inicie a aplicação
+mvn spring-boot:run
+
+A API ficará disponível em:
+http://localhost:8080
 
 
+Endpoints principais
 
-2. Configurar o Banco de Dados
+Método,URL,Descrição,Autenticação
+POST,/api/auth/register,Cadastro de usuário,Não
+POST,/api/auth/login,Login → retorna access + refresh token,Não
+POST,/api/auth/refresh,Renova o access token,Sim (refresh token)
+GET,/api/test/user,Rota protegida (ROLE_USER),Sim
+GET,/api/test/admin,Rota protegida (ROLE_ADMIN),Sim
 
-No arquivo src/main/resources/application.properties já existem as configurações do banco:
+
+Variáveis de ambiente
+Caso queira alterar as credenciais do banco ou a porta da aplicação, crie um arquivo src/main/resources/application-local.properties ou use variáveis de ambiente:
+server.port=8080
 
 spring.datasource.url=jdbc:postgresql://localhost:5432/security_test
 spring.datasource.username=spring_user
 spring.datasource.password=strongpassword
-spring.datasource.driver-class-name=org.postgresql.Driver
-spring.jpa.hibernate.ddl-auto=update
-spring.jpa.show-sql=true
 
-  Se o banco ou usuário não existirem, crie-os usando SQL:
-
-```sql
-CREATE DATABASE security_test;
-CREATE USER spring_user WITH PASSWORD 'strongpassword';
-GRANT ALL PRIVILEGES ON DATABASE security_test TO spring_user;
+jwt.secret=sua-chave-secreta-muito-forte-aqui
+jwt.expiration=86400000          # 24h em ms
+jwt.refresh-expiration=604800000 # 7 dias em ms
 
 
-Compilar o Projeto
+Estrutura do projeto
 
-Dentro da pasta do projeto:
-
-mvn clean install
-
-Executar a aplicação:
-
-mvn spring-boot:run
-
-ou executa a classe principal
+src/
+ └── main/
+      ├── java/com/example/potencial/
+      │    ├── controller/
+      │    ├── service/
+      │    ├── repository/
+      │    ├── security/
+      │    ├── config/
+      │    ├── dto/
+      │    ├── exception/
+      │    └── PotencialApplication.java
+      └── resources/
+           ├── application.properties
+           └── application-local.properties (opcional)
