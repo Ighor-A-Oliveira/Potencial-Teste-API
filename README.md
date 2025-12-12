@@ -104,5 +104,22 @@ GRANT ALL PRIVILEGES ON DATABASE security_test TO spring_user;
 }
 ```
 
+## Rodando com Docker Compose (recomendado)
+
+
+
+```bash
+git clone https://github.com/Ighor-A-Oliveira/Potencial-Teste-API.git
+cd Potencial-Teste-API
+
+# Sobe banco + API em containers
+docker-compose up -d --build
+
+# Para parar
+docker-compose down
+```
+
+Aplicação disponível em: http://localhost:8080
+
 
 
