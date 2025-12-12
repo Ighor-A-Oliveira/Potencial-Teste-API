@@ -1,4 +1,4 @@
-# Teste Técnico API Para Estagio
+# Teste Técnico Para Estagio
 
 API REST de carteira digital desenvolvida como teste técnico para processo de estagio.
 
@@ -34,7 +34,7 @@ GRANT ALL PRIVILEGES ON DATABASE security_test TO spring_user;
 ```
 
 ## Como rodar
-- git clone https://github.com/Ighor-A-Oliveira/Potencial-Teste-API.git
+- git clone https://github.com/Ighor-A-Oliveira/Estagio-Teste-API.git
 - cd repo_folder
 - Va em application.properties e veja se tem tem a configuração spring.datasource.url=jdbc:postgresql://localhost:5432/security_test
 - mvn clean install
@@ -109,7 +109,7 @@ GRANT ALL PRIVILEGES ON DATABASE security_test TO spring_user;
 
 
 ```bash
-git clone https://github.com/Ighor-A-Oliveira/Potencial-Teste-API.git
+git clone https://github.com/Ighor-A-Oliveira/Estagio-Teste-API
 cd repo_folder
 Va em application.properties e veja se tem tem a configuração spring.datasource.url=jdbc:postgresql://db:5432/security_test
 
