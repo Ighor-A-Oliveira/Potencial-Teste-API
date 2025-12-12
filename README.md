@@ -63,5 +63,4 @@ GRANT ALL PRIVILEGES ON DATABASE potencial_test TO spring_user;
 
 ### POST /transaction/external-transfer
 -Transferência para outro banco (simulada)
--Todos os endpoints protegidos precisam do header:
--Authorization: Bearer <seu_token_jwt>
+-Todos os endpoints protegidos precisam do header: Authorization: Bearer <seu_token_jwt>
