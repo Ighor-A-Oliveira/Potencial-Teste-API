@@ -87,7 +87,7 @@ GRANT ALL PRIVILEGES ON DATABASE potencial_test TO spring_user;
 ```
 
 ### Transferencia Externa
-'''json
+```json
 {
   "fromAccountId": 2,   
   "amount": 250.00,                
@@ -96,7 +96,7 @@ GRANT ALL PRIVILEGES ON DATABASE potencial_test TO spring_user;
   "toAccountNumber": 987654,     
   "toAccountHolderCpf": "11111111111" 
 }
-'''
+```
 
 
 
